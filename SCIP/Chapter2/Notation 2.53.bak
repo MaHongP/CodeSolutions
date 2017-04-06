@@ -1,0 +1,10 @@
+#lang racket
+
+(memq 'apple '(pear banana prune))
+(memq 'apple '(x (apple sauce) y apple pear))
+
+;Test
+;Practice 2.53
+(list 'a 'b 'c)
+(list (list 'george))
+(list 'a 'b)

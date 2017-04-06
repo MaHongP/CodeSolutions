@@ -1,0 +1,22 @@
+(define (cont-frac n d k counter)
+   ( if ( = k counter )
+        (/ (n counter) (d counter))
+        (/ (n counter) (+ (d counter)  (cont-frac n d  k (+ 1 counter))))
+        ))
+(define (dis n k counter)
+  ( (display (n counter))
+    (newline)
+    (if (not ( = k counter))
+    (dis n k (+ counter 1))
+    (display " END ")
+    )))
+
+(cont-frac (lambda (x) 1.0)
+           (lambda (x)
+             (cond ((= (remainder x 3) 1) 1.0)
+                   ((= (remainder x 3) 2) (* 2 (/ (+ 1.0 x) 3)))
+                   ((= (remainder x 3) 0) 1.0)
+             ))
+           1000 1)
+
+

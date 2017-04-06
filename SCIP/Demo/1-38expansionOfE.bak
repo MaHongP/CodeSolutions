@@ -1,0 +1,8 @@
+(define (cont-frac n d k counter)
+   ( if ( = k counter )
+        (/ (n k) (d k))
+        (/ (n k) (+ (d k)  (cont-frac n d  k (+ 1 counter))))
+        ))
+(cont-frac (lambda (x) 1.0) (lambda (x) 1.0)  110 0)
+
+

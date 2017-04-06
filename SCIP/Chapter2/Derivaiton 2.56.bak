@@ -1,0 +1,35 @@
+;Symbolic derivation
+
+;Expression of algebra expression
+(define (variable? v1)
+  (symbol? v1))
+(define (same-variable? v1 v2)
+  (and (variable? v1) (variable? v2) (eq? v1 v2)))
+
+;Construction of + and *
+(define (make-sum a1 a2) (list '+ a1 a2))
+(define (make-product m1 m2) (list '* m1 m2))
+
+;Judge + * and extract elements from + *
+(define (sum? x) (and (pair?x) (eq? (car x) '+)))
+(define (addend s) (cadr s))
+(define (augend s) (caddr s))
+
+(define (product? y) (and (pair? y) (eq? (car y) '*)))
+(define (multiplier p) (cadr p))
+(define (multiplicand p) (caddr p))
+
+;Construction of deviation
+(define (deriv exp var)
+  (cond ((number? exp) 0)
+        ((variable? exp)
+         (if (same-variable? exp var) 1 0))
+        ((sum? exp)
+         (make-sum (deriv (addend exp) var)
+                   (deriv (augend exp) var)))
+        ((product? exp)
+         (make-product (deriv (addend exp) var)
+                       (deriv (augend exp) var)))
+        (else
+         (error "Unknown expression type -- DERIV" exp))))
+

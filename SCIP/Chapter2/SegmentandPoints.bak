@@ -1,0 +1,30 @@
+; This file is a presentation of segment
+;Definition of point
+(define (make-point px py)
+  (cons px py))
+(define (point-x p)
+  (car p))
+(define (point-y p)
+  (cdr p))
+(define (print-point p)
+  (newline)
+  (display "(")
+  (display (point-x p))
+  (display ",")
+  (display (point-y p))
+  (display ")")
+  )
+(define (make-segment b e)
+  (cons b e ))
+(define (start-segment a)
+  (car a))
+(define (end-segment a)
+  (cdr a))
+
+
+;Test Unit
+;Test points
+(define tp-x (make-point 2 3))
+(define tp-y (make-point 2.4 3.9))
+(print-point tp-x)
+(print-point tp-y)

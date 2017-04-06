@@ -1,0 +1,12 @@
+(define (square x) (* x x))
+(define (cont-frac n d k counter)
+   ( if ( = k counter )
+        (/ (n counter) (d counter))
+        (/ (n counter) (- (d counter)  (cont-frac n d  k (+ 1 counter))))
+        ))
+(define (tan-cf x k)
+  (cont-frac (lambda (i) (if (= i 1) x (square x)))
+             (lambda (i) (- (* 2.0 i) 1))
+             k 1))
+(tan-cf 20 1000)
+             

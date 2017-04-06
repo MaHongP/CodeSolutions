@@ -1,0 +1,44 @@
+(define (make-rat n d) (cons n d ))
+(define (numer x) (car x))
+(define (denom x) (cdr x))
+;Definition of rational number
+;Addition of rational number
+(define (add-rat x y)
+  (make-rat (+ (*(numer x) (denum y)) (* (numer y) (denum x)))
+            (* (denum x) (denum y))
+            )
+  )
+;Substract of rational number
+(define (sub-rat x y)
+  (make-rat (- (*(numer x) (denum y)) (* (numer y) (denum x)))
+            (* (denum x) (denum y))
+            )
+  )
+;Multiply of rational number
+(define (mul-rat x y)
+  (make-rat (* (numer x) (numer y))
+            (* (denum x) (denum y))
+            )
+  )
+;Division of rational number
+(define (div-rat x y)
+  (make-rat (* (numer x) (denum y))
+            (* (denum x) (numer y))
+            )
+  )
+;Equally judgement of rational number
+(define (equ-rat x y)
+  (= (* (numer x) (denum y))
+            (* (denum x) (numer y))
+            )
+  )
+;Display of rational number
+(define (dis-rat x)
+  (display (numer x))
+  (display denum x))
+  )
+;Test
+(define test-x (make-rat 1 2))
+(define test-y (make-rat 1 3))
+(dis-rat test-x)
+(dis-rat test-y)

@@ -1,0 +1,33 @@
+#lang planet neil/sicp
+(define (last-pair x)
+  (if (null? (cdr x))
+      x
+      (last-pair (cdr x))))
+(define (append! x y)
+  (set-cdr! (last-pair x) y)
+  x)
+(define x (list 'a 'b))
+(define y (list 'c 'd))
+(append x y)
+(cdr x)
+(define z (append! x y ))
+(cdr x)
+
+(define (make-cycle x)
+  (set-cdr! (last-pair x) x)
+  x)
+(display (make-cycle x))
+(define z2 (make-cycle (list 'a 'b 'c)))
+
+(define (mystery x)
+  (define (loop x y)
+    (if (null? x )
+        y
+        (let ((temp (cdr x)))
+             (set-cdr! x y)
+          (display x)
+          (loop temp x))))
+    (loop x '()))
+
+(define v (list 'a 'b 'c 'd))
+(define w (mystery v))

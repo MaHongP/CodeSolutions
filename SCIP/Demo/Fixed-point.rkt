@@ -1,0 +1,36 @@
+
+(define tol 0.0001)
+
+
+(define (fixed-point f first-guess)
+  (define (close-enough? v1 v2) 
+          (< (abs (- v1 v2)) tol))
+  (define (try guess) 
+          ( let ((next (f guess) ) )
+             (if (close-enough? guess next)
+                 guess
+                 (try next) )))
+  (try first-guess))
+(fixed-point (lambda (y) (+ (sin y) (cos y) ) ) 1.0)
+
+
+(define (fixed-point-m f first-guess)
+  (define (close-enough? v1 v2) 
+          (< (abs (- v1 v2)) tol))
+  (define (report f val)
+    ((newline)
+     (display "*Guess: ")
+     (display val)
+     (f val)
+     ))
+  (define (try guess)
+           (let ((next (f guess) ) )
+             (if (close-enough? guess next)
+                 (display guess)
+                 (display  (try next))
+                  )))
+  ( try first-guess))
+(fixed-point-m (lambda (x) (/ (log 1000) (log x) ) ) 2.0)
+(display "*****")
+(newline)
+(fixed-point-m (lambda (x) (/  (+ x (/ (log 1000) (log x) ) ) 2 )) 2.0)

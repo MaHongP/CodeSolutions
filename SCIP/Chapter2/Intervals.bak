@@ -1,0 +1,33 @@
+;Interval Calculation
+;Definition of Interval
+(define (make-interval a b)
+  (if (> a b) (cons b a)
+        (cons a b)
+        ))
+(define (lower-bound x)
+  (car x))
+(define (upper-bound x)
+  (cdr x))
+(define (print-interval x)
+  (newline)
+  (display "[ ")
+  (display (lower-bound x))
+  (display ", ")
+  (display (upper-bound x))
+  (display " ]")
+ )
+;Definition of addition, substraction,multiply and division of interval
+(define (add-interval x y)
+  (make-interval (+ (lower-bound x) (lower-bound y)) (+ (upper-bound x) (upper-bound y))))
+(define (sub-interval x y)
+  (make-interval (- (lower-bound x) (lower-bound y)) (- (upper-bound x) (upper-bound y))))
+
+;Test Unit
+(define test-in1 (make-interval 4 3))
+(define test-in2 (make-interval 3 7))
+(display (lower-bound test-in1))
+(newline)
+(display (upper-bound test-in1))
+(newline)
+(print-interval (add-interval test-in1 test-in2))
+(print-interval (sub-interval test-in1 test-in2))
